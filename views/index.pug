@@ -1,5 +1,44 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Homework 5 
+
+  //- Table of submitted data if any
+  if formData 
+    h2 Submitted Form Data 
+    table(border="1" cellpadding="5" style="border-collapse: collapse; margin-bottom: 20px;")
+      thead
+        tr
+          th Field
+          th Value
+      tbody
+        each val, key in formData
+          tr
+            td= key
+            if Array.isArray(val)
+              td= val.join(", ")
+            else 
+              td= val
+
+  form(action="/" method="post")
+    div
+      label(for="nameblank") Name:
+      input(type="text" name="nameblank" required)
+    div
+      label(for="email") Email:
+      input(type="email" name="email" required)
+    div
+      label Graduation Year:
+      input(type="radio" name="grad-year" value="2023") 2023
+      input(type="radio" name="grad-year" value="2024") 2024
+      input(type="radio" name="grad-year" value="2025") 2025
+      input(type="radio" name="grad-year" value="2026") 2026
+    div
+      label Favorite Colors:
+      input(type="checkbox" name="Red") Red
+      input(type="checkbox" name="Blue") Blue
+      input(type="checkbox" name="Green") Green
+      input(type="checkbox" name="Yellow") Yellow
+    div
+      input(type="reset" value="Reset")
+      input(type="submit" value="Submit")
